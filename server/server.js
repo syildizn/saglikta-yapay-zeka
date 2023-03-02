@@ -3,6 +3,8 @@ import dotenv from 'dotenv'
 import mongoose from 'mongoose'
 //import academicianRouter from './Routers/academicianRouter.js'
 import adminRouter from './Routers/adminRouter.js'
+import studentRouter from './Routers/studentRouter.js'
+import academicianRouter from './Routers/academicianRouter.js'
 
 import cors from 'cors'
 
@@ -15,6 +17,8 @@ app.use(express.static('client'))
 
 //app.use("/academician", academicianRouter);
 app.use("/admin", adminRouter);
+app.use("/student", studentRouter);
+app.use("/academician", academicianRouter);
 
 
 
