@@ -21,10 +21,10 @@ export default function App() {
 
   return (
     
-    <MDBNavbar expand='lg' light className='bg-success'>
+    <MDBNavbar expand='lg' light style={{backgroundColor: "#00a7b6"}}>
       
       <MDBContainer fluid>
-        <MDBNavbarBrand href='#' className='text-light'>Bakırçay
+        <MDBNavbarBrand href='/Home' className='text-light'>Bakırçay
         Üniversitesi</MDBNavbarBrand>
 
         <MDBNavbarToggler
@@ -39,12 +39,12 @@ export default function App() {
         <MDBCollapse navbar show={showBasic}>
           <MDBNavbarNav className='mr-auto mb-2 mb-lg-0'>
             <MDBNavbarItem>
-              <MDBNavbarLink active aria-current='page' href='#' className='text-light'> 
+              <MDBNavbarLink active aria-current='page' href='/Home' className='text-light'> 
                 Ana sayfa
               </MDBNavbarLink>
             </MDBNavbarItem>
             <MDBNavbarItem>
-              <MDBNavbarLink href='#' className='text-light' >Öğrenci Ekle</MDBNavbarLink>
+              <MDBNavbarLink href='/StudentAdd' className='text-light' >Öğrenci Ekle</MDBNavbarLink>
             </MDBNavbarItem>
 
             <MDBNavbarItem>
@@ -69,7 +69,7 @@ export default function App() {
 
           <form className='d-flex input-group w-auto'>
             <input type='search' className='form-control' placeholder='Arama' aria-label='Search' />
-            <MDBBtn color='secondary'>Ara</MDBBtn>
+            <MDBBtn style={{backgroundColor: "#39363b", border: "none"}}>Ara</MDBBtn>
           </form>
         </MDBCollapse>
       </MDBContainer>

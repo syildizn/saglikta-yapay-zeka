@@ -1,4 +1,4 @@
-import logo from '../logo.svg';
+import logo from '../assets/images/logo.png';
 import '../App.css';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
 import Navbar from "../components/navbar.js"
@@ -9,17 +9,10 @@ function HomePage() {
                 <div className="App">
                     <header className="App-header">
                     <img src={logo} className="App-logo" alt="logo" />
-                    <p>
-                        Edit <code>src/App.js</code> and save to reload.
+                    <p className='text-black mt-4'>
+                        Bakırçay Üniversitesi <code style={{color: "#00a7b6"}} className="fw-bold">Telesağlık</code> Admin Panel
                     </p>
-                    <a
-                        className="App-link"
-                        href="https://reactjs.org"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-                        Learn React
-                    </a>
+                    
                     </header>
                 </div>
           </div>
