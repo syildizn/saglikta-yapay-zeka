@@ -36,7 +36,7 @@ function LoginPage() {
 
           <h1 className="my-5 display-3 fw-bold ls-tight px-3">
             Bakırçay Üniversitesi <br />
-            <span className="text-primary">TeleSağlık</span>
+            <span style={{color: "#00a7b6"}}>TeleSağlık</span>
           </h1>
 
           <p className='px-3' style={{color: 'hsl(217, 10%, 50.8%)'}}>
@@ -63,54 +63,32 @@ function LoginPage() {
               }}>
               <MDBRow>
                 <MDBCol col='6'>
-                    <Form.Label>First Name</Form.Label>
+                    <Form.Label>İsim</Form.Label>
                   <Form.Control wrapperClass='mb-4' label='First name' id='form1' type='text'/>
                 </MDBCol>
 
                 <MDBCol col='6'>
-                <Form.Label>Last Name</Form.Label>
+                <Form.Label>Soy İsim</Form.Label>
                   <Form.Control wrapperClass='mb-4' label='Last name' id='form1' type='text'/>
                 </MDBCol>
               </MDBRow>
               
                 <br></br>
-                <Form.Label>Department</Form.Label>
+                <Form.Label>Bölüm</Form.Label>
                 <Form.Control wrapperClass='mb-4' label='Department' id='form1' type='text'
                     onChange={(e) => setFormData({...formData, username: e.target.value })}/><br></br>
-                <Form.Label>Password</Form.Label>
+                <Form.Label>Şifre</Form.Label>
                 <Form.Control wrapperClass='mb-4' label='Password' id='form1' type='password'/><br></br>
                 <Form.Label>Email</Form.Label>
                 <Form.Control wrapperClass='mb-4' label='Email' id='form1' type='email'/><br></br>
-                <Form.Label>Student No</Form.Label>
+                <Form.Label>Öğrenci No</Form.Label>
                 <Form.Control wrapperClass='mb-4' label='StudentNo' id='form1' type='text'/><br></br>
 
-                <div className='d-flex justify-content-center mb-4'>
-                    <MDBCheckbox name='flexCheck' value='' id='flexCheckDefault' label='Subscribe to our newsletter' />
-                </div>
+                
 
-                <MDBBtn className='w-100 mb-4' size='md'>sign up</MDBBtn>
+                <MDBBtn className='w-100 mb-4' style={{backgroundColor: "#00a7b6", border: "none"}} size='md'>Üye Ol</MDBBtn>
 
-                <div className="text-center">
-
-                    <p>or sign up with:</p>
-
-                    <MDBBtn tag='a' color='none' className='mx-3' style={{ color: '#1266f1' }}>
-                    <MDBIcon fab icon='facebook-f' size="sm"/>
-                    </MDBBtn>
-
-                    <MDBBtn tag='a' color='none' className='mx-3' style={{ color: '#1266f1' }}>
-                    <MDBIcon fab icon='twitter' size="sm"/>
-                    </MDBBtn>
-
-                    <MDBBtn tag='a' color='none' className='mx-3' style={{ color: '#1266f1' }}>
-                    <MDBIcon fab icon='google' size="sm"/>
-                    </MDBBtn>
-
-                    <MDBBtn tag='a' color='none' className='mx-3' style={{ color: '#1266f1' }}>
-                    <MDBIcon fab icon='github' size="sm"/>
-                    </MDBBtn>
-
-                </div>
+                
 
               
                 </Form.Group>
