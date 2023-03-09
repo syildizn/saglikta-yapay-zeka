@@ -15,6 +15,7 @@ import {
   MDBDropdownItem,
   MDBCollapse,
 } from 'mdb-react-ui-kit';
+import Form from 'react-bootstrap/Form';
 
 export default function App() {
   const [showBasic, setShowBasic] = useState(false);
@@ -50,12 +51,13 @@ export default function App() {
             <MDBNavbarItem>
               <MDBDropdown>
                 <MDBDropdownToggle tag='a' className='nav-link text-light'  role='button'  >
-                  Menü
+                  İstatistikler
                 </MDBDropdownToggle>
                 <MDBDropdownMenu>
                   <MDBDropdownItem link className='text-light' >Öğrenci Listesi</MDBDropdownItem>
                   <MDBDropdownItem link className='text-light' >Öğrenci Durumu</MDBDropdownItem>
-                  <MDBDropdownItem link className='text-light' >Öğrenci Sil</MDBDropdownItem>
+                  <MDBDropdownItem link className='text-light' >Hekim Durumu</MDBDropdownItem>
+                  <MDBDropdownItem link className='text-light' >Görüşme İstatistikleri</MDBDropdownItem>
                 </MDBDropdownMenu>
               </MDBDropdown>
             </MDBNavbarItem>
@@ -67,10 +69,10 @@ export default function App() {
             </MDBNavbarItem>
           </MDBNavbarNav>
 
-          <form className='d-flex input-group w-auto'>
+          {/* <Form className='d-flex input-group w-auto'>
             <input type='search' className='form-control' placeholder='Arama' aria-label='Search' />
             <MDBBtn style={{backgroundColor: "#39363b", border: "none"}}>Ara</MDBBtn>
-          </form>
+          </Form> */}
         </MDBCollapse>
       </MDBContainer>
     </MDBNavbar>
