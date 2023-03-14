@@ -47,7 +47,9 @@ export default function App() {
             <MDBNavbarItem>
               <MDBNavbarLink href='/StudentAdd' className='text-light' >Öğrenci Ekle</MDBNavbarLink>
             </MDBNavbarItem>
-
+            <MDBNavbarItem>
+              <MDBNavbarLink href='/DoctorAdd' className='text-light' >Doktor Ekle</MDBNavbarLink>
+            </MDBNavbarItem>
             <MDBNavbarItem>
               <MDBDropdown>
                 <MDBDropdownToggle tag='a' className='nav-link text-light'  role='button'  >
@@ -61,13 +63,18 @@ export default function App() {
                 </MDBDropdownMenu>
               </MDBDropdown>
             </MDBNavbarItem>
-
             <MDBNavbarItem>
               <MDBNavbarLink disabled href='#' tabIndex={-1} aria-disabled='true' className='text-light' >
                 Öğrenci Sağlık Kaydı
               </MDBNavbarLink>
             </MDBNavbarItem>
+            <MDBNavbarItem className="ms-auto">
+              <MDBNavbarLink disabled href='#' tabIndex={-1} aria-disabled='true' className='text-light' >
+                Admin Panel
+              </MDBNavbarLink>
+            </MDBNavbarItem>
           </MDBNavbarNav>
+
 
           {/* <Form className='d-flex input-group w-auto'>
             <input type='search' className='form-control' placeholder='Arama' aria-label='Search' />
