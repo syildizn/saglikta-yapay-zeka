@@ -1,5 +1,10 @@
 .App {
   text-align: center;
+  height: 100%;
+}
+
+body{
+  height: 100%;
 }
 
 .App-logo {
@@ -35,4 +40,19 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.login-page-container {
+  height: 105vh;
+  background: rgb(10,165,181);
+background: -moz-linear-gradient(281deg, rgba(10,165,181,1) 0%, rgba(255,255,255,1) 84%);
+background: -webkit-linear-gradient(281deg, rgba(10,165,181,1) 0%, rgba(255,255,255,1) 84%);
+background: linear-gradient(281deg, rgba(10,165,181,1) 0%, rgba(255,255,255,1) 84%);
+filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#0aa5b5",endColorstr="#ffffff",GradientType=1);
+}
+
+.admin-panel-label{
+  color:#0AA5B5;
+  font-size: 24px;
+  font-weight: bold;
 }
