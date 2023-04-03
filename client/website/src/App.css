@@ -1,3 +1,5 @@
+
+
 .App {
   text-align: center;
 }
@@ -28,11 +30,97 @@
   color: #61dafb;
 }
 
-@keyframes App-logo-spin {
+/* @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
   }
   to {
     transform: rotate(360deg);
   }
+} */
+
+@keyframes example {
+  from {opacity: 0; transform: translateY(50%);}
+  to {opacity: 1; transform: translateY(0);}
+}
+
+.card {
+  animation-name: example;
+  animation-duration: 1s;
+}
+
+.myNavbar {
+  box-shadow: none !important;
+}
+
+.serviceCard {
+  transition: box-shadow 0.3s;
+}
+
+.serviceCard:hover {
+  box-shadow: 1px 1px 10px 10px #d1d1d1;
+}
+
+ul {
+  list-style: none;
+}
+
+.listItem::before {
+  content: " ";
+  background: #0da5b3;
+  border-radius: 1ch;
+  padding-inline: 1ch;
+  margin-inline-end: 1ch;
+}
+
+.column {
+  padding: 50px !important; /* Add some horizontal padding to each column */
+  text-align: center !important; /* Center the column contents */
+}
+
+.columnLast {
+  padding: 50px !important; /* Add some horizontal padding to each column */
+  text-align: center !important; /* Center the column contents */
+}
+
+
+.column::before {
+  content: "";
+  position: absolute;
+  margin-left: 100px;
+  right: 28;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 2px;
+  height: 90px;
+  background-color: rgb(203, 203, 203);
+}
+
+.steps::before {
+  content: "";
+  position: absolute;
+  margin-left: 140px;
+  right: 28;
+  top: 4428px;
+  transform: translateY(-50%);
+  width: 250px;
+  height: 2px;
+  background-color: rgb(220, 220, 220);
+   
+}
+
+.commentCard {
+  transition: box-shadow 0.3s;
+}
+
+.commentCard:hover {
+  box-shadow: 1px 1px 10px 10px #d1d1d1;
+  background-color: #0da5b3;
+  color: white !important;
+  transition: 0.5s;
+}
+
+.commentCard:hover .commentatorPic{
+  color: black !important;
+  transition: 0.5s;
 }

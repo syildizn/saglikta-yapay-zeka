@@ -16,17 +16,24 @@ import {
   MDBCollapse,
 } from 'mdb-react-ui-kit';
 import Form from 'react-bootstrap/Form';
+import { Container } from 'react-bootstrap';
+import { FacebookIcon } from 'react-share';
+
+import { Button } from "react-bootstrap";
+import { FaInstagram, FaFacebook, FaLinkedin, FaTwitter } from "react-icons/fa";
+
 
 export default function App() {
   const [showBasic, setShowBasic] = useState(false);
 
   return (
     
-    <MDBNavbar expand='lg' light style={{backgroundColor: "#00a7b6"}}>
+    
+    <MDBNavbar expand='lg' light className='border-bottom-0 myNavbar'>
+      <Container >
       
-      <MDBContainer fluid>
-        <MDBNavbarBrand href='/Home' className='text-light'>Bakırçay
-        Üniversitesi</MDBNavbarBrand>
+        <MDBNavbarBrand href='/Home' className='text-dark'><b>Bakırçay
+        Üniversitesi </b></MDBNavbarBrand>
 
         <MDBNavbarToggler
           aria-controls='navbarSupportedContent'
@@ -41,20 +48,87 @@ export default function App() {
           <MDBNavbarNav className='mr-auto mb-2 mb-lg-0'>
 
             <MDBNavbarItem>
-              <MDBNavbarLink active aria-current='page' href='/Home' className='text-light float-start'> 
+              <MDBNavbarLink active aria-current='page' href='/Home' className='text-dark float-start ms-3'> 
                 Ana sayfa
               </MDBNavbarLink>
             </MDBNavbarItem>
+
+            <MDBNavbarItem>
+              <MDBDropdown>
+                <MDBDropdownToggle tag='a' className='nav-link text-dark'  role='button'  >
+                  Sayfalar
+                </MDBDropdownToggle>
+                <MDBDropdownMenu>
+                  <MDBDropdownItem link className='text-light' >Öğrenci Listesi</MDBDropdownItem>
+                  <MDBDropdownItem link className='text-light' >Öğrenci Durumu</MDBDropdownItem>
+                  <MDBDropdownItem link className='text-light' >Hekim Durumu</MDBDropdownItem>
+                  <MDBDropdownItem link className='text-light' >Görüşme İstatistikleri</MDBDropdownItem>
+                </MDBDropdownMenu>
+              </MDBDropdown>
+            </MDBNavbarItem>
+
+            <MDBNavbarItem>
+              <MDBDropdown>
+                <MDBDropdownToggle tag='a' className='nav-link text-dark ms-3'  role='button'  >
+                  İstatistikler
+                </MDBDropdownToggle>
+                <MDBDropdownMenu>
+                  <MDBDropdownItem link className='text-light' >Öğrenci Listesi</MDBDropdownItem>
+                  <MDBDropdownItem link className='text-light' >Öğrenci Durumu</MDBDropdownItem>
+                  <MDBDropdownItem link className='text-light' >Hekim Durumu</MDBDropdownItem>
+                  <MDBDropdownItem link className='text-light' >Görüşme İstatistikleri</MDBDropdownItem>
+                </MDBDropdownMenu>
+              </MDBDropdown>
+            </MDBNavbarItem>
+
+            <MDBNavbarItem>
+              <MDBDropdown>
+                <MDBDropdownToggle tag='a' className='nav-link text-dark ms-3'  role='button'  >
+                  İstatistikler
+                </MDBDropdownToggle>
+                <MDBDropdownMenu>
+                  <MDBDropdownItem link className='text-light' >Öğrenci Listesi</MDBDropdownItem>
+                  <MDBDropdownItem link className='text-light' >Öğrenci Durumu</MDBDropdownItem>
+                  <MDBDropdownItem link className='text-light' >Hekim Durumu</MDBDropdownItem>
+                  <MDBDropdownItem link className='text-light' >Görüşme İstatistikleri</MDBDropdownItem>
+                </MDBDropdownMenu>
+              </MDBDropdown>
+            </MDBNavbarItem>
+
+            <MDBNavbarItem>
+              <MDBDropdown>
+                <MDBDropdownToggle tag='a' className='nav-link text-dark ms-3'  role='button'  >
+                  İstatistikler
+                </MDBDropdownToggle>
+                <MDBDropdownMenu>
+                  <MDBDropdownItem link className='text-light' >Öğrenci Listesi</MDBDropdownItem>
+                  <MDBDropdownItem link className='text-light' >Öğrenci Durumu</MDBDropdownItem>
+                  <MDBDropdownItem link className='text-light' >Hekim Durumu</MDBDropdownItem>
+                  <MDBDropdownItem link className='text-light' >Görüşme İstatistikleri</MDBDropdownItem>
+                </MDBDropdownMenu>
+              </MDBDropdown>
+            </MDBNavbarItem>
+
+            
         
             
           </MDBNavbarNav>
-
-          <Form className='d-flex input-group w-auto'>
-            
-            <MDBBtn style={{backgroundColor: "#39363b", border: "none"}}>Giriş</MDBBtn>
-          </Form>
+          
+          <FaInstagram size={20} className="text-primary me-4"/>
+          <FaFacebook size={20} className="text-primary me-4"/>
+          <FaLinkedin size={20} className="text-primary me-4"/>
+          <FaTwitter size={20} className="text-primary me-2"/>
+          <p className='mt-3' style={{fontSize: "30px"}}>|</p>
+    
+        
+          <MDBBtn rounded className='ms-4 me-5 text-center ps-3' style={{backgroundColor: "#0da5b3"}}>
+            GİRİŞ
+          </MDBBtn>
+          
         </MDBCollapse>
-      </MDBContainer>
+      
+      </Container>
     </MDBNavbar>
+    
   );
 }
