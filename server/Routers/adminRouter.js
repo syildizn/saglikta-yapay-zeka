@@ -2,6 +2,7 @@ import express from "express";
 import bcrypt from 'bcryptjs'
 import Admin from '../models/adminModel.js';
 import Academician from '../models/academicianModel.js'
+import Doctor from '../models/doctorModel.js'
 
 const router = express.Router();
 
@@ -44,6 +45,12 @@ router.post("/signin", async (req,res)=>{
     } catch (error) {
         return res.status(400).json({ message: error.message })
     }
+})
+
+// http://localhost:4096/admin/listProducts GET request
+router.get('/listDoctors', async(req, res)=>{
+    const Doctors = await Doctor.find()
+    res.send(Doctors)
 })
 
 export default router;

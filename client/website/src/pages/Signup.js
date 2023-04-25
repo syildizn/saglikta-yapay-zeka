@@ -22,8 +22,12 @@ from 'mdb-react-ui-kit';
 function LoginPage() {
     const navigate = useNavigate();
     const [formData, setFormData] = useState({
-        username: "",
+        name: "",
+        lastName: "",
+        department: "",
         password: "",
+        mail: "",
+        no: "",
     })
 
     return (
@@ -51,39 +55,46 @@ function LoginPage() {
             <Form.Group onSubmit={(e) => {
                 e.preventDefault();
                 SignUp(formData).then((res) => {
-                    navigate("/")
+                  console.log("asdas");
+                    navigate("/home")
                 })
                 .catch((err) => {
-                    console.log(err)
+                    console.log("adasasddasd");
+                    console.log(err);
                 })
               }}>
               <MDBRow>
                 <MDBCol col='6'>
                     <Form.Label>İsim</Form.Label>
-                  <Form.Control wrapperClass='mb-4' label='First name' id='form1' type='text'/>
+                  <Form.Control wrapperClass='mb-4' label='First name' id='form1' type='text'
+                      onChange={(e) => setFormData({...formData, name: e.target.value })}/>
                 </MDBCol>
 
                 <MDBCol col='6'>
                 <Form.Label>Soy İsim</Form.Label>
-                  <Form.Control wrapperClass='mb-4' label='Last name' id='form1' type='text'/>
+                  <Form.Control wrapperClass='mb-4' label='Last name' id='form1' type='text'
+                      onChange={(e) => setFormData({...formData, lastName: e.target.value })}/>
                 </MDBCol>
               </MDBRow>
               
                 <br></br>
                 <Form.Label>Bölüm</Form.Label>
                 <Form.Control wrapperClass='mb-4' label='Department' id='form1' type='text'
-                    onChange={(e) => setFormData({...formData, username: e.target.value })}/><br></br>
+                    onChange={(e) => setFormData({...formData, department: e.target.value })}/><br></br>
                 <Form.Label>Şifre</Form.Label>
-                <Form.Control wrapperClass='mb-4' label='Password' id='form1' type='password'/><br></br>
+                <Form.Control wrapperClass='mb-4' label='Password' id='form1' type='password' 
+                    onChange={(e) => setFormData({...formData, password: e.target.value })}/><br></br>
                 <Form.Label>Email</Form.Label>
-                <Form.Control wrapperClass='mb-4' label='Email' id='form1' type='email'/><br></br>
+                <Form.Control wrapperClass='mb-4' label='Email' id='form1' type='email'
+                    onChange={(e) => setFormData({...formData, mail: e.target.value })}/><br></br>
                 <Form.Label>Öğrenci No</Form.Label>
-                <Form.Control wrapperClass='mb-4' label='StudentNo' id='form1' type='text'/><br></br>
+                <Form.Control wrapperClass='mb-4' label='StudentNo' id='form1' type='text'
+                    onChange={(e) => setFormData({...formData, no: e.target.value })}/><br></br>
 
                 
 
-                <MDBBtn className='w-100 mb-4' style={{backgroundColor: "#00a7b6", border: "none"}} size='md'>Üye Ol</MDBBtn>
-
+                <MDBBtn type='submit' className='w-100 mb-4' style={{backgroundColor: "#00a7b6", border: "none"}} size='md'>Üye Ol</MDBBtn>
+               
               
                 </Form.Group>
             </MDBCardBody>

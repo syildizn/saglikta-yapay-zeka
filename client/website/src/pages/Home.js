@@ -297,6 +297,7 @@ function HomePage() {
                                                                      width:"100px"}}>1
                   </h3>
                   <h3 className=''>Randevu</h3>
+                  <p></p>
                 </div>
                 <div className='steps'>
                   <h3 className='border rounded-circle text-white' style={{backgroundColor: "#ef4339",
