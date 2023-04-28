@@ -34,6 +34,7 @@ const MyCalendar = () => {
 
   return (
     <Container>
+      <h1>This Doctor's Available Days:</h1><br></br><br></br>
       <Calendar
         localizer={localizer}
         startAccessor="start"

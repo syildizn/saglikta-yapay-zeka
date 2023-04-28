@@ -34,6 +34,8 @@ function DoctorsPage() {
   const [data, setData] = useState([]);
   const navigate = useNavigate();
 
+  const studentNo = window.location.href.slice(34,);
+
   useEffect(() => {
     fetch('http://localhost:4096/admin/listDoctors')
       .then(response => response.json())
@@ -52,7 +54,7 @@ function DoctorsPage() {
 
     return (
       <div>
-      
+
         <div style={{minHeight: "1100px", backgroundColor: "#f3f4f6"}}>
             <br></br>
             <h5 className='text-center pt-5' style={{color: "#0da5b3"}}><b>Our Doctors</b></h5>
@@ -66,17 +68,19 @@ function DoctorsPage() {
                   {data.map(item => (
                     
                        <MDBCol>
+                        <a href={`/Doctor/${studentNo}/${item._id}`}>
                        <MDBCard background='white' className='text-body mb-3 p-4 serviceCard' style={{height: "280px"}}>
                       <MDBCardBody>
                       <span className="square rounded-8 p-3 mb-5" style={{backgroundColor: "#cef7e8"}}><i class="fas fa-chart-pie" style={{color: "#0cd68a"}}></i></span>
-                        <MDBCardTitle className='mt-5'>{item.firstName} 
-                          {item.lastName}</MDBCardTitle><br></br><br></br>
+                        <MDBCardTitle className='mt-5 d-flex'><p className='pe-1'>{item.firstName}</p>
+                          <p>{item.lastName}</p></MDBCardTitle><br></br><br></br>
                         <MDBCardText className='text-secondary'>
                           {item.firstName}
                           {item.lastName}
                         </MDBCardText>
                       </MDBCardBody>
                     </MDBCard>
+                    </a>
                        </MDBCol>
                    ))}
                 </MDBRow>

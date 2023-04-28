@@ -7,6 +7,9 @@ import JitsiPage from './pages/Jitsi.js';
 import SetUpMeetingPage from './pages/SetUpMeeting.js';
 import DoctorsPage from './pages/DoctorsList.js';
 import DoctorPage from './pages/Doctor.js';
+import LoginPage from './pages/Login.js';
+import DoctorLoginPage from './pages/DoctorLogin.js';
+import DoctorProfilePage from './pages/DoctorProfile.js';
 
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
 
@@ -27,12 +30,15 @@ function App() {
       <main>
         <Routes>
           <Route path='/' element={<SignupPage/>} exact></Route>
-          <Route path='/Home' element={<HomePage/>} exact></Route>
+          <Route path='/Login' element={<LoginPage/>} exact></Route>
+          <Route path='/DoctorLogin' element={<DoctorLoginPage/>} exact></Route>
+          <Route path='/Home/:studentNo' element={<HomePage/>} exact></Route>
           <Route path='/Meeting' element={<MeetingPage payload={payload}/>} exact></Route>
           <Route path='/Jitsi' element={<JitsiPage/>} exact></Route>
           <Route path='/SetUpMeeting' element={<SetUpMeetingPage/>} exact></Route>
-          <Route path='/DoctorsList' element={<DoctorsPage/>} exact></Route>
-          <Route path='/Doctor' element={<DoctorPage/>} exact></Route>
+          <Route path='/DoctorsList/:studentNo' element={<DoctorsPage/>} exact></Route>
+          <Route path='/Doctor/:studentNo/:id' element={<DoctorPage/>} exact></Route>
+          <Route path='/DoctorProfile/:id' element={<DoctorProfilePage/>} exact></Route>
         </Routes>
       </main>
     </Router>

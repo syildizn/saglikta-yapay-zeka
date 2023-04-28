@@ -26,6 +26,8 @@ import { FaInstagram, FaFacebook, FaLinkedin, FaTwitter } from "react-icons/fa";
 export default function App() {
   const [showBasic, setShowBasic] = useState(false);
 
+  const studentNo = window.location.href.slice(27,);
+
   return (
     
     
@@ -59,7 +61,7 @@ export default function App() {
                   Sayfalar
                 </MDBDropdownToggle>
                 <MDBDropdownMenu>
-                  <MDBDropdownItem link className='text-light' >Öğrenci Listesi</MDBDropdownItem>
+                  <MDBDropdownItem link className='text-light' href={`/doctorslist/${studentNo}`}>Doktorlarımız</MDBDropdownItem>
                   <MDBDropdownItem link className='text-light' >Öğrenci Durumu</MDBDropdownItem>
                   <MDBDropdownItem link className='text-light' >Hekim Durumu</MDBDropdownItem>
                   <MDBDropdownItem link className='text-light' >Görüşme İstatistikleri</MDBDropdownItem>

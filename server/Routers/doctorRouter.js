@@ -32,19 +32,37 @@ router.post("/signup", async (req, res)=>{
     }
 })
 
+// // http://localhost:4096/doctor/signin ' e yapılan POST isteği
+// router.post("/signin", async (req,res)=>{
+//     try {
+//         const {password,email} = req.body;
+//         const doctor = await Doctor.findOne({email})
+//         if(!doctor)
+//             return res.status(400).json({message: "Doctor does not exist"})
+
+//         const isPasswordCorrect = await bcrypt.compare(password, doctor.password);
+//         if(!isPasswordCorrect)
+//             return res.status(400).json({message: "Wrong Password"})
+        
+//         return res.status(200).json({ Doctor, message: 'Authentication successful' })
+//     } catch (error) {
+//         return res.status(400).json({ message: error.message })
+//     }
+// })
+
 // http://localhost:4096/doctor/signin ' e yapılan POST isteği
 router.post("/signin", async (req,res)=>{
     try {
-        const {password,email} = req.body;
+        const {email} = req.body;
         const doctor = await Doctor.findOne({email})
         if(!doctor)
             return res.status(400).json({message: "Doctor does not exist"})
 
-        const isPasswordCorrect = await bcrypt.compare(password, doctor.password);
-        if(!isPasswordCorrect)
-            return res.status(400).json({message: "Wrong Password"})
+        // const isPasswordCorrect = await bcrypt.compare(password, doctor.password);
+        // if(!isPasswordCorrect)
+        //     return res.status(400).json({message: "Wrong Password"})
         
-        return res.status(200).json({ Doctor, message: 'Authentication successful' })
+        return res.status(200).json({ doctor, message: 'Authentication successful' })
     } catch (error) {
         return res.status(400).json({ message: error.message })
     }

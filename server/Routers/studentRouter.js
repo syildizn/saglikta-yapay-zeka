@@ -1,7 +1,7 @@
 import express from "express";
 import bcrypt from 'bcryptjs'
 import Student from '../models/studentModel.js';
-
+import Appointment from '../models/appointmentModel.js';
 
 const router = express.Router();
 
@@ -47,6 +47,25 @@ router.post("/signin", async (req,res)=>{
         return res.status(200).json({ student, message: 'Authentication successful' })
     } catch (error) {
         return res.status(400).json({ message: error.message })
+    }
+})
+
+// http://localhost:4096/student/MakeAppointment 'a yapılan post isteği
+router.post("/MakeAppointment", async (req, res)=>{
+    try {
+        const {doctorId, patientId, patientFirstName, patientLastName, day, month, year, hour, accepted } = req.body;
+        console.log(patientFirstName)
+        const appointmentExists = await Appointment.findOne({ patientId })
+        if(appointmentExists)
+            return res.status(400).json({ message: 'Appointment Already Exists.'})
+
+        const createdAppointment = await Appointment.create({
+            doctorId, patientId, patientFirstName, patientLastName, day, month, year, hour, accepted
+        })
+        return res.status(201).json(createdAppointment);
+    } catch (error) {
+        console.log(error)
+        return res.json({message: "create appointment failed."})
     }
 })
 

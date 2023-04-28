@@ -3,6 +3,8 @@ import bcrypt from 'bcryptjs'
 import Admin from '../models/adminModel.js';
 import Academician from '../models/academicianModel.js'
 import Doctor from '../models/doctorModel.js'
+import Student from '../models/studentModel.js'
+import Appointments from '../models/appointmentModel.js'
 
 const router = express.Router();
 
@@ -51,6 +53,56 @@ router.post("/signin", async (req,res)=>{
 router.get('/listDoctors', async(req, res)=>{
     const Doctors = await Doctor.find()
     res.send(Doctors)
+})
+
+// http://localhost:4096/admin/listStudents GET request
+router.get('/listStudents', async(req, res)=>{
+    const Students = await Student.find()
+    res.send(Students)
+})
+
+// http://localhost:4096/admin/doctors/:id GET request
+router.get('/doctors/:id', async(req,res)=>{
+    try {
+        console.log(req.params.id)
+        let doctor = await Doctor.findOne({_id:req.params.id });
+        if (!doctor) {
+            return res.status(404).send('Doctor Not Found');
+        }
+        res.send(doctor);
+    } catch(error) {
+        res.status(500).send(error);
+    }
+})
+
+// http://localhost:4096/admin/appointments/:id GET request
+router.get('/appointments/:id', async(req,res)=>{
+    try {
+        let appointment = await Appointments.findOne({doctorId:req.params.id });
+        if (!appointment) {
+            return res.status(404).send('Doctor Not Found');
+        }
+        if (appointment.accepted == 1)
+            return res.status(404).send('Appointment already accepted');
+        res.send(appointment);
+    } catch(error) {
+        res.status(500).send(error);
+    }
+})
+
+// http://localhost:4096/admin/appointments/:id GET request
+router.get('/patients/:id', async(req,res)=>{
+    try {
+        let student = await Student.findOne({studentNo:req.params.id });
+        if (!student) {
+            
+            return res.status(404).send('Student Not Found');
+        }
+        
+        res.send(student);
+    } catch(error) {
+        res.status(500).send(error);
+    }
 })
 
 export default router;
