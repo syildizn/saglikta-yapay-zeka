@@ -146,13 +146,20 @@ export default function DoctorPage() {
             </MDBModalHeader>
             <MDBModalBody className='m-auto'>
             <DayPicker
-      mode="single"
-      selected={selected}
-      onSelect={setSelected}
-      onClick={(e) => {  setAppointmentData({...appointmentData, day: format(selected, 'PP').split(" ")[1]}); setAppointmentData({...appointmentData, month: format(selected, 'PP').split(" ")[0]}); setAppointmentData({...appointmentData, year: format(selected, 'PP').split(" ")[2]}); }}
-      footer={footer}
-      
-    />
+  mode="single"
+  selected={selected}
+  onSelect={(selected) => {
+    setAppointmentData(prevState => ({
+      ...prevState,
+      day: format(selected, 'PP').split(" ")[1],
+      month: format(selected, 'PP').split(" ")[0],
+      year: format(selected, 'PP').split(" ")[2],
+    }));
+    setSelected(selected);
+  }}
+  footer={footer}
+/>
+
 
 <Dropdown>
       <Dropdown.Toggle variant="info" id="dropdown-basic">
@@ -177,7 +184,6 @@ export default function DoctorPage() {
                 Close
               </MDBBtn>
               <MDBBtn onClick={(e) => {
-                
                 e.preventDefault();
                 MakeAppointment(appointmentData).then((res) => {
                     alert("SUCCESS")
@@ -282,6 +288,20 @@ export default function DoctorPage() {
                   {data && (
                         <div className='d-flex'>
                            <MDBCardText className="text-muted pe-2"> {data.department}</MDBCardText>
+                          
+                           </div>
+                        )}
+                  </MDBCol>
+                </MDBRow>
+                <hr />
+                <MDBRow>
+                  <MDBCol sm="3">
+                    <MDBCardText>Bio</MDBCardText>
+                  </MDBCol>
+                  <MDBCol sm="9">
+                  {data && (
+                        <div className='d-flex'>
+                           <MDBCardText className="text-muted pe-2"> {data.bio}</MDBCardText>
                           
                            </div>
                         )}

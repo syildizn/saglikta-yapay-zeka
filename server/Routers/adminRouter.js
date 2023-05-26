@@ -5,8 +5,17 @@ import Academician from '../models/academicianModel.js'
 import Doctor from '../models/doctorModel.js'
 import Student from '../models/studentModel.js'
 import Appointments from '../models/appointmentModel.js'
+import Meeting from '../models/meetingModel.js'
+import nodemailer from "nodemailer"
 
 const router = express.Router();
+
+
+
+
+
+
+
 
 // http://localhost:4096/admin/signup 'a yapılan post isteği
 router.post("/signup", async (req, res)=>{
@@ -64,7 +73,6 @@ router.get('/listStudents', async(req, res)=>{
 // http://localhost:4096/admin/doctors/:id GET request
 router.get('/doctors/:id', async(req,res)=>{
     try {
-        console.log(req.params.id)
         let doctor = await Doctor.findOne({_id:req.params.id });
         if (!doctor) {
             return res.status(404).send('Doctor Not Found');
@@ -76,15 +84,30 @@ router.get('/doctors/:id', async(req,res)=>{
 })
 
 // http://localhost:4096/admin/appointments/:id GET request
-router.get('/appointments/:id', async(req,res)=>{
+router.get('/appointments/:id', async (req, res) => {
     try {
-        let appointment = await Appointments.findOne({doctorId:req.params.id });
-        if (!appointment) {
+      const appointments = await Appointments.find({ doctorId: req.params.id, accepted: "0" });
+  
+      if (appointments.length === 0) {
+        return res.status(404).send('No pending appointments found');
+      }
+  
+      res.send(appointments);
+    } catch (error) {
+      res.status(500).send(error);
+    }
+  });
+  
+
+// http://localhost:4096/admin/appointments/:id GET request
+router.get('/meetings/:doctorId', async(req,res)=>{
+    try {
+        let meeting = await Meeting.find({doctorId:req.params.doctorId });
+        if (!meeting) {
+            console.log(req.params);
             return res.status(404).send('Doctor Not Found');
         }
-        if (appointment.accepted == 1)
-            return res.status(404).send('Appointment already accepted');
-        res.send(appointment);
+        res.send(meeting);
     } catch(error) {
         res.status(500).send(error);
     }

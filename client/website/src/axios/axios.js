@@ -15,3 +15,9 @@ export const DoctorLogin = async(formData) =>
 
 export const MakeAppointment = async(formData) =>
     await HTTP.post("/student/MakeAppointment", formData);
+
+export const DeleteAppointment = async(formData) => 
+    await HTTP.delete("/doctor/DeleteAppointment", formData); 
+
+export const AcceptAppointment = async(formData) =>
+    await HTTP.post("/doctor/AcceptAppointment", formData);

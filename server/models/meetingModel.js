@@ -1,8 +1,12 @@
 import mongoose from "mongoose";
 
-const appointmentSchema = mongoose.Schema({
-
+const meetingSchema = mongoose.Schema({
     doctorId:{
+        type: String,
+        required: true
+    },
+
+    doctorFirstName:{
         type: String,
         required: true
     },
@@ -47,12 +51,19 @@ const appointmentSchema = mongoose.Schema({
         required: true
     },
 
+    
 
     accepted: {
         type: String,
         required: true
     },
 
+    meetingRoom: {
+        type: String,
+        required: true
+    },
+
+
 })
 
-export default mongoose.model('Appointment',appointmentSchema)
+export default mongoose.model('Meeting',meetingSchema)

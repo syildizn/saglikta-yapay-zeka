@@ -19,6 +19,8 @@ import {
   import { useNavigate } from 'react-router-dom';
   import Dropdown from 'react-bootstrap/Dropdown';
   import { MakeAppointment } from "../axios/axios.js";
+  import { DeleteAppointment } from "../axios/axios.js";
+  import { AcceptAppointment } from "../axios/axios.js";
   
   import {
       MDBModal,
@@ -37,7 +39,13 @@ import {
   export default function DoctorProfilePage() {
       const [data, setData] = useState([]);
       const [userAppointmentData, setUserAppointmentData] = useState([]);
+      const [meetingData, setMeetingData] = useState([]);
       const [patientData, setPatientData] = useState([]);
+      const [doctorFirstName, setDoctorFirstName] = useState('');
+
+      const [userDeleteAppointmentData, setUserDeleteAppointmentData] = useState({
+        id:"",
+      });
       
       const navigate = useNavigate();
      
@@ -57,6 +65,9 @@ import {
       const month = dateArray[0]
       const day = dateArray[1]
       const year = dateArray[2]
+
+
+      
   
       
   
@@ -75,9 +86,11 @@ import {
       useEffect(() => {
           fetch(`http://localhost:4096/admin/doctors/${text}`)
           .then(response => response.json())
-          .then(json => setData(json))
+          .then(json => { setData(json); setDoctorFirstName(json.firstName); })
           .catch(error => console.error(error));
-      }, []);
+      }, [text]);
+
+      
   
 
       //Get the appointment requests
@@ -87,6 +100,14 @@ import {
         .then(json => setUserAppointmentData(json))
         .catch(error => console.error(error));
     }, []);
+
+      useEffect(() => {
+        fetch(`http://localhost:4096/admin/meetings/${text}`)
+        .then(response => response.json())
+        .then(json => setMeetingData(json))
+        .catch(error => console.error(error));
+    }, []);
+    
 
     
 
@@ -99,12 +120,54 @@ import {
         .then(json => setPatientData(json))
         .catch(error => console.error(error));
     }, []);
+
+    const sendEmail = () => {
+      const doctorId = text;
+      const appointmentId = document.getElementById('appointmentId').innerText;
+      const doctorFirstName = document.getElementById('doctorFirstName').innerText;
+      const doctorLastName = document.getElementById('doctorLastName').innerText;
+      const patientId = document.getElementById('patientId').innerText;
+      const patientFirstName = document.getElementById('patientFirstName').innerText;
+      const patientLastName = document.getElementById('patientLastName').innerText;
+      const patientDate = document.getElementById('patientDate').innerText;
+      const patientHour = document.getElementById('patientHour').innerText;
+      const patientEmail = document.getElementById('patientEmail').innerText;
+    
+      fetch('http://localhost:4096/doctor/setMeeting', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          doctorId: doctorId,
+          appointmentId: appointmentId,
+          doctorFirstName: doctorFirstName,
+          doctorLastName: doctorLastName,
+          patientId: patientId,
+          patientFirstName: patientFirstName,
+          patientLastName: patientLastName,
+          patientDate: patientDate,
+          patientHour: patientHour,
+          patientEmail: patientEmail,
+        })
+      })
+      .then(response => {
+        console.log('Email sent:', response);
+      })
+      .catch(error => {
+        console.error('Error sending email:', error);
+      });
+    };
+    
+  
       
   
     return (
+
+      
       
       <section style={{ backgroundColor: '#eee' }}>
-
+      
   
         <MDBContainer className="py-5">
           <MDBRow>
@@ -149,7 +212,7 @@ import {
                     <MDBCol sm="9">
                       {data && (
                           <div className='d-flex'>
-                             <MDBCardText className="text-muted pe-2"> {data.firstName}</MDBCardText>
+                             <MDBCardText id='doctorFirstName' className="text-muted pe-2"> {data.firstName}</MDBCardText>
                       
                              </div>
                           )}
@@ -164,7 +227,7 @@ import {
                     <MDBCol sm="9">
                     {data && (
                           <div className='d-flex'>
-                             <MDBCardText className="text-muted pe-2"> {data.lastName}</MDBCardText>
+                             <MDBCardText id='doctorLastName' className="text-muted pe-2"> {data.lastName}</MDBCardText>
                             
                              </div>
                           )}
@@ -188,7 +251,7 @@ import {
                   <hr />
                   <MDBRow>
                     <MDBCol sm="3">
-                      <MDBCardText>Address</MDBCardText>
+                      <MDBCardText>Department</MDBCardText>
                     </MDBCol>
                     <MDBCol sm="9">
                     {data && (
@@ -199,60 +262,115 @@ import {
                           )}
                     </MDBCol>
                   </MDBRow>
+                  <hr />
+                  <MDBRow>
+                    <MDBCol sm="3">
+                      <MDBCardText>Bio</MDBCardText>
+                    </MDBCol>
+                    <MDBCol sm="9">
+                    {data && (
+                          <div className='d-flex'>
+                             <MDBCardText className="text-muted pe-2"> {data.bio}</MDBCardText>
+                            
+                             </div>
+                          )}
+                    </MDBCol>
+                  </MDBRow>
                 </MDBCardBody>
               </MDBCard>
   
               <MDBRow>
-                <MDBCol md="6">
+                <MDBCol md="16">
                   <MDBCard className="mb-4 mb-md-0">
                     <MDBCardBody>
                       <MDBCardText className="mb-4"><span className="text-primary font-italic me-1">Appointment</span> Requests</MDBCardText>
                       
-                      {userAppointmentData && (
-                          <div className='d-flex'>
-                             <MDBCardText className="text-muted pe-2"> {userAppointmentData.patientId}</MDBCardText>
-                             <MDBCardText className="text-muted pe-2"> {userAppointmentData.patientFirstName}</MDBCardText>
-                             <MDBCardText className="text-muted pe-2"> {userAppointmentData.patientLastName}</MDBCardText>
-                             </div>
-                          )}
+                      {userAppointmentData && userAppointmentData.map((appointment, index) => (
+                        <div className='d-flex'>
+                        <MDBCardText id='appointmentId' className="text-muted pe-2 d-none"> {appointment._id}</MDBCardText>
+                        <MDBCardText id='patientId' className="text-muted pe-2"> {appointment.patientId}</MDBCardText>
+                        <MDBCardText id='patientFirstName' className="text-muted pe-2"> {appointment.patientFirstName}</MDBCardText>
+                        <MDBCardText id='patientLastName' className="text-muted pe-2"> {appointment.patientLastName}</MDBCardText>
+                        <MDBCardText id='patientEmail' className="text-muted pe-2"> {patientData.email}</MDBCardText>
+                        <MDBCardText id='patientDate' className="text-muted pe-2"> {appointment.date}</MDBCardText>
+                        <MDBCardText id='patientHour' className="text-muted pe-2"> {appointment.hour}</MDBCardText>
+                        <p className='opacity-0'>aaaaaaaaa</p>
+                        
+                        <MDBBtn onClick={sendEmail}
+                       type="button" class="btn btn-outline-success btn-floating" data-mdb-ripple-color="dark">
+                        <i class="fa-solid fa-check"></i>
+                        </MDBBtn> <p className='opacity-0'>aa</p>
+
+
+                        <MDBBtn onClick={(e) => {
+                         e.preventDefault();
+                         DeleteAppointment(userAppointmentData).then((res) => {
+                             alert("SUCCESS")
+                         })
+                         .catch((err) => {
+                             console.log(err)
+                             alert("FAILED")
+                         })
+                       }}  type="button" class="btn btn-danger btn-floating">
+                        <i class="fa-solid fa-trash"></i>
+                       </MDBBtn>
+                        </div>
+                      ))}
+                     
+                          
 
                         
 
                     </MDBCardBody>
                   </MDBCard>
                 </MDBCol>
+
+                
   
-                <MDBCol md="6">
+                
+              </MDBRow>
+              <br></br>
+              <MDBRow>
+                <MDBCol md="16">
                   <MDBCard className="mb-4 mb-md-0">
                     <MDBCardBody>
-                      <MDBCardText className="mb-4"><span className="text-primary font-italic me-1">assigment</span> Project Status</MDBCardText>
-                      <MDBCardText className="mb-1" style={{ fontSize: '.77rem' }}>Web Design</MDBCardText>
-                      <MDBProgress className="rounded">
-                        <MDBProgressBar width={80} valuemin={0} valuemax={100} />
-                      </MDBProgress>
-  
-                      <MDBCardText className="mt-4 mb-1" style={{ fontSize: '.77rem' }}>Website Markup</MDBCardText>
-                      <MDBProgress className="rounded">
-                        <MDBProgressBar width={72} valuemin={0} valuemax={100} />
-                      </MDBProgress>
-  
-                      <MDBCardText className="mt-4 mb-1" style={{ fontSize: '.77rem' }}>One Page</MDBCardText>
-                      <MDBProgress className="rounded">
-                        <MDBProgressBar width={89} valuemin={0} valuemax={100} />
-                      </MDBProgress>
-  
-                      <MDBCardText className="mt-4 mb-1" style={{ fontSize: '.77rem' }}>Mobile Template</MDBCardText>
-                      <MDBProgress className="rounded">
-                        <MDBProgressBar width={55} valuemin={0} valuemax={100} />
-                      </MDBProgress>
-  
-                      <MDBCardText className="mt-4 mb-1" style={{ fontSize: '.77rem' }}>Backend API</MDBCardText>
-                      <MDBProgress className="rounded">
-                        <MDBProgressBar width={66} valuemin={0} valuemax={100} />
-                      </MDBProgress>
+                      <MDBCardText className="mb-4"><span className="text-primary font-italic me-1">Scheduled</span> Meetings</MDBCardText>
+                      
+                      {meetingData && meetingData.map((meeting, index) => (
+                          <div className='d-flex' key={index}>
+                            <MDBCardText className="text-muted pe-2">
+                              {meeting.patientFirstName}
+                            </MDBCardText>
+                            <MDBCardText className="text-muted pe-2">
+                              {meeting.patientLastName}
+                            </MDBCardText>
+                            <MDBCardText className="text-muted pe-2">
+                              {meeting.date}
+                            </MDBCardText>
+                            <MDBCardText className="text-muted pe-2">
+                              {meeting.hour}
+                            </MDBCardText>
+                            <a href={meeting.meetingRoom}>
+                              <MDBCardText id='patientId' className="text-info pe-2">
+                                Görüşme Linki
+                              </MDBCardText>
+                            </a>
+                            <p className='opacity-0'>aaaaaaaaa</p>
+                          </div>
+                        ))}
+
+
+                             
+
+                        
+
                     </MDBCardBody>
                   </MDBCard>
                 </MDBCol>
+
+                
+  
+                
               </MDBRow>
             </MDBCol>
           </MDBRow>

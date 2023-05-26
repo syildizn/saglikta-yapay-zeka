@@ -54,13 +54,38 @@ router.post("/signin", async (req,res)=>{
 router.post("/MakeAppointment", async (req, res)=>{
     try {
         const {doctorId, patientId, patientFirstName, patientLastName, day, month, year, hour, accepted } = req.body;
-        console.log(patientFirstName)
+        
         const appointmentExists = await Appointment.findOne({ patientId })
+        
         if(appointmentExists)
+
             return res.status(400).json({ message: 'Appointment Already Exists.'})
+        
+        
+        const months = {
+            Jan: 0,
+            Feb: 1,
+            Mar: 2,
+            Apr: 3,
+            May: 4,
+            Jun: 5,
+            Jul: 6,
+            Aug: 7,
+            Sep: 8,
+            Oct: 9,
+            Nov: 10,
+            Dec: 11
+            };
+
+        const monthNum = parseInt(months[month]);
+        const yearNum = parseInt(year);
+        const dayClean = parseInt(day.slice(0,-1)) + 1;
+
+        const formattedDate = new Date(yearNum, monthNum, dayClean);
+        const date = formattedDate.toISOString().substring(0, 10);
 
         const createdAppointment = await Appointment.create({
-            doctorId, patientId, patientFirstName, patientLastName, day, month, year, hour, accepted
+            doctorId, patientId, patientFirstName, patientLastName, date, hour, accepted
         })
         return res.status(201).json(createdAppointment);
     } catch (error) {
