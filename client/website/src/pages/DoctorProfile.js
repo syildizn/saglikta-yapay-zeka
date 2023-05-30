@@ -153,10 +153,40 @@ import {
       })
       .then(response => {
         console.log('Email sent:', response);
+        
       })
       .catch(error => {
         console.error('Error sending email:', error);
       });
+
+      window.location.reload();
+    };
+
+    const rejectAppointment = () => {
+      
+      const patientId = document.getElementById('patientId').innerText;
+      const appointmentId = document.getElementById('appointmentId').innerText;
+      
+    
+      fetch('http://localhost:4096/doctor/RejectAppointment', {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          
+          appointmentId: appointmentId,
+          
+        })
+      })
+      .then(response => {
+        console.log('Appointment rejected sent:', response);
+      })
+      .catch(error => {
+        console.error('Error rejecting appointment:', error);
+      });
+
+      window.location.reload();
     };
     
   
@@ -302,18 +332,10 @@ import {
                         </MDBBtn> <p className='opacity-0'>aa</p>
 
 
-                        <MDBBtn onClick={(e) => {
-                         e.preventDefault();
-                         DeleteAppointment(userAppointmentData).then((res) => {
-                             alert("SUCCESS")
-                         })
-                         .catch((err) => {
-                             console.log(err)
-                             alert("FAILED")
-                         })
-                       }}  type="button" class="btn btn-danger btn-floating">
+                        <MDBBtn onClick={rejectAppointment}
+                       type="button" class="btn btn-outline-danger btn-floating" data-mdb-ripple-color="dark">
                         <i class="fa-solid fa-trash"></i>
-                       </MDBBtn>
+                        </MDBBtn> <p className='opacity-0'>aa</p>
                         </div>
                       ))}
                      

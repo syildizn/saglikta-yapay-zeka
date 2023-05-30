@@ -72,12 +72,12 @@ router.post("/signin", async (req,res)=>{
 })
 
 // http://localhost:4096/doctor/deleteappointment ' e yapılan POST isteği
-router.delete('/DeleteAppointment', async (req, res) => {
+router.delete('/RejectAppointment', async (req, res) => {
     try {
-        const{_id} = req.body;
+        const _id = req.body.appointmentId.slice(1);
         // const {doctorId, patientId} = req.body;
-        console.log("SHDAJKDH")
         console.log(_id);
+ 
         //console.log(doctorId);
         // Check if the document exists
         const appointment = await Appointment.findOne({ _id });
