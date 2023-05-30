@@ -59,7 +59,7 @@ import {
           footer = <p>You picked {format(selected, 'PP')}.</p>;
       }
     
-      let text = window.location.href.slice(36,);
+      let text = window.location.href.slice(37,);
       
       const dateArray = format(selected, 'PP').split(" ")
       const month = dateArray[0]
@@ -69,22 +69,11 @@ import {
 
       
   
-      
-  
-    //   const [appointmentData, setAppointmentData] = useState({
-    //       doctorId: myArray[1],
-    //       patientId: myArray[0],
-    //       day:day,
-    //       month:month,
-    //       year:year,
-    //       hour:"",
-    //       accepted:"0"
-    //   })
-    
+     
   
       
       useEffect(() => {
-          fetch(`http://localhost:4096/admin/doctors/${text}`)
+          fetch(`http://localhost:4096/admin/patients/${text}`)
           .then(response => response.json())
           .then(json => { setData(json); setDoctorFirstName(json.firstName); })
           .catch(error => console.error(error));
@@ -108,13 +97,7 @@ import {
         .catch(error => console.error(error));
     }, []);
 
-    // useEffect(() => {
-    //     fetch(`http://localhost:4096/admin/patientmeetings`)
-    //     .then(response => response.json())
-    //     .then(json => setMeetingData(json))
-    //     .catch(error => console.error(error));
-    // }, []);
-    
+ 
 
     
 
@@ -204,7 +187,7 @@ import {
       
       
       <section style={{ backgroundColor: '#eee' }}>
-      {text}
+
   
         <MDBContainer className="py-5">
           <MDBRow>
@@ -225,13 +208,12 @@ import {
               <MDBCard className="mb-4">
                 <MDBCardBody className="text-center">
                   <MDBCardImage
-                    src="https://pbs.twimg.com/media/Fl-T2_UXgAMQX5X.jpg"
+                    src="https://png.pngtree.com/png-clipart/20190922/original/pngtree-male-student-icon-design-png-image_4775792.jpg"
                     alt="avatar"
                     className="rounded-circle"
                     style={{ width: '150px' }}
                     fluid />
-                  <p className="text-muted mb-1">Full Stack Developer</p>
-                  <p className="text-muted mb-4">Bay Area, San Francisco, CA</p>
+                  
                   
                     
                 </MDBCardBody>
@@ -299,20 +281,8 @@ import {
                           )}
                     </MDBCol>
                   </MDBRow>
-                  <hr />
-                  <MDBRow>
-                    <MDBCol sm="3">
-                      <MDBCardText>Bio</MDBCardText>
-                    </MDBCol>
-                    <MDBCol sm="9">
-                    {data && (
-                          <div className='d-flex'>
-                             <MDBCardText className="text-muted pe-2"> {data.bio}</MDBCardText>
-                            
-                             </div>
-                          )}
-                    </MDBCol>
-                  </MDBRow>
+             
+                 
                 </MDBCardBody>
               </MDBCard>
   
@@ -368,10 +338,10 @@ import {
                       {meetingData && meetingData.map((meeting, index) => (
                           <div className='d-flex' key={index}>
                             <MDBCardText className="text-muted pe-2">
-                              {meeting.patientFirstName}
+                              Dr. {meeting.doctorFirstName}
                             </MDBCardText>
                             <MDBCardText className="text-muted pe-2">
-                              {meeting.patientLastName}
+                              {meeting.doctorLastName}
                             </MDBCardText>
                             <MDBCardText className="text-muted pe-2">
                               {meeting.date}

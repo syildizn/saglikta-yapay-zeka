@@ -117,7 +117,6 @@ router.get('/meetings/:doctorId', async(req,res)=>{
 // http://localhost:4096/admin/appointments/:id GET request
 router.get('/patientmeetings/:patientId', async(req,res)=>{
     try {
-        console.log(req.params);
         let meeting = await Meeting.find({patientId:req.params.patientId });
         if (!meeting) {
             console.log(req.params);

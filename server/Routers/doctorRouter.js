@@ -56,10 +56,12 @@ router.post("/signup", async (req, res)=>{
 // http://localhost:4096/doctor/signin ' e yapılan POST isteği
 router.post("/signin", async (req,res)=>{
     try {
-        const {email} = req.body;
+        const {email, password} = req.body;
         const doctor = await Doctor.findOne({email})
-        if(!doctor)
-            return res.status(400).json({message: "Doctor does not exist"})
+        if (!doctor || doctor.password !== password) {
+            return res.status(400).json({ message: "Invalid credentials" });
+          }
+          
 
         // const isPasswordCorrect = await bcrypt.compare(password, doctor.password);
         // if(!isPasswordCorrect)
