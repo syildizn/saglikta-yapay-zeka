@@ -34,12 +34,19 @@ function DoctorLoginPage() {
 
       <MDBRow>
 
-        <MDBCol md='6' className='text-center text-md-start d-flex flex-column justify-content-center'>
+      <div className='d-flex'>
+      <MDBCol md='6' className='text-center text-md-start d-flex flex-column justify-content-center'>
 
+        <h1 className="my-5 display-3 fw-bold ls-tight px-3">
+          Bakırçay Üniversitesi <br />
+          <span style={{color: "#00a7b6"}}>TeleSağlık</span>
+        </h1>
+
+        <p className='px-3' style={{color: 'hsl(217, 10%, 50.8%)'}}>
           
-        
+        </p>
 
-        </MDBCol>
+      </MDBCol>
 
         <MDBCol md='3'>
 
@@ -58,23 +65,23 @@ function DoctorLoginPage() {
             <Form.Group >
               
                 <br></br>
-                <label className='admin-panel-label'>Log In</label><br></br><br></br>
+                <label className='admin-panel-label'>Doktor Girişi</label><br></br><br></br>
                 <Form.Label>Doctor mail</Form.Label>
                 <Form.Control
                             onChange={(e) => setFormData({...formData, email: e.target.value})}
                             type="text"
-                            placeholder="Enter doctor mail"
+
                         />
                 <Form.Label>Şifre</Form.Label>
                 <Form.Control
                             onChange={(e) => setFormData({...formData, password: e.target.value})}
                             type="password"
-                            placeholder="Password"
+
                             
                         />
               
                 
-
+                <br></br>
                 <MDBBtn className='w-100 mb-4' style={{backgroundColor: "#00a7b6", border: "none"}} size='md' 
                 disabled={formData.email==="" || formData.password===""} type="submit">Giriş</MDBBtn>
               
@@ -83,11 +90,13 @@ function DoctorLoginPage() {
               
                 </Form.Group>
                 </form>
+                <a href={`/login`} className='text-center'>Öğrenci Girişi</a>
+   
             </MDBCardBody>
           </MDBCard>
 
         </MDBCol>
-
+</div>
       </MDBRow>
 
     </MDBContainer>

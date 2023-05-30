@@ -50,7 +50,7 @@ export default function App() {
           <MDBNavbarNav className='mr-auto mb-2 mb-lg-0'>
 
             <MDBNavbarItem>
-              <MDBNavbarLink active aria-current='page' href='/Home' className='text-dark float-start ms-3'> 
+              <MDBNavbarLink active aria-current='page' href={`/home/${studentNo}`} className='text-dark float-start ms-3'> 
                 Ana sayfa
               </MDBNavbarLink>
             </MDBNavbarItem>
@@ -63,13 +63,13 @@ export default function App() {
                 <MDBDropdownMenu>
                   <MDBDropdownItem link className='text-light' href={`/doctorslist/${studentNo}`}>Doktorlarımız</MDBDropdownItem>
                   <MDBDropdownItem link className='text-light' href={`/StudentProfile/${studentNo}`} >Profilim</MDBDropdownItem>
-                  <MDBDropdownItem link className='text-light' >Hekim Durumu</MDBDropdownItem>
-                  <MDBDropdownItem link className='text-light' >Görüşme İstatistikleri</MDBDropdownItem>
+                  {/* <MDBDropdownItem link className='text-light' >Hekim Durumu</MDBDropdownItem>
+                  <MDBDropdownItem link className='text-light' >Görüşme İstatistikleri</MDBDropdownItem> */}
                 </MDBDropdownMenu>
               </MDBDropdown>
             </MDBNavbarItem>
 
-            <MDBNavbarItem>
+            {/* <MDBNavbarItem>
               <MDBDropdown>
                 <MDBDropdownToggle tag='a' className='nav-link text-dark ms-3'  role='button'  >
                   İstatistikler
@@ -109,7 +109,7 @@ export default function App() {
                   <MDBDropdownItem link className='text-light' >Görüşme İstatistikleri</MDBDropdownItem>
                 </MDBDropdownMenu>
               </MDBDropdown>
-            </MDBNavbarItem>
+            </MDBNavbarItem> */}
 
             
         

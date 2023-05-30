@@ -10,6 +10,11 @@ import Card from 'react-bootstrap/Card';
 import { FaInstagram, FaFacebook, FaLinkedin, FaTwitter } from "react-icons/fa";
 import ProgressBar from 'react-bootstrap/ProgressBar';
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faAppStoreIos } from '@fortawesome/free-brands-svg-icons';
+import { faGooglePlay } from '@fortawesome/free-brands-svg-icons';
+
+
 import React from 'react';
 import {
   MDBCard,
@@ -58,7 +63,7 @@ function HomePage() {
     }
 
     window.addEventListener('scroll', animateCards);
-
+    const studentNo = window.location.href.slice(27,);
     return (
       <div>
         <motion.div animate={{ opacity: 1 }} transition={{ duration: 1 }} style={imageStyle}>
@@ -73,32 +78,33 @@ function HomePage() {
                       <p className='w-50' style={{letterSpacing: "2px", color: "grey"}}>
                         Uzman hekimlerimizden randevular alın ve Bakırçay TeleSağlık ile tedavinize hemen başlayın.
                       </p><br></br>
-                      <MDBBtn rounded className='text-center' size='lg' style={{backgroundColor: "#0da5b3"}}>
-                        İncele / Keşfet
+                      <MDBBtn href={`/doctorslist/${studentNo}`} rounded className='text-center' size='lg' style={{backgroundColor: "#0da5b3"}}>
+                        Doktorlarımız
+
                       </MDBBtn>
-                      <MDBBtn rounded className='ms-4 text-center' color='primary' size='lg'>
-                        Hemen Başla
+                      <MDBBtn href={`/StudentProfile/${studentNo}`} rounded className='ms-4 text-center' color='primary' size='lg'>
+                        Profilim
                       </MDBBtn>
                     </Container>
                   </motion.div>
           </motion.div>
-
-          <div style={{minHeight: "1100px", backgroundColor: "#f3f4f6"}}>
+          <i class="fa-duotone fa-head-side-medical" style={{color: "#494ca2"}}></i>
+          <div style={{minHeight: "500px", backgroundColor: "#f3f4f6"}}>
             <br></br>
             <h5 className='text-center pt-5' style={{color: "#0da5b3"}}><b>Hizmetlerimiz</b></h5>
             <br></br>
-            <h1 className='text-center m-auto' style={{width: "30%", color: "black", letterSpacing: "2px"}}><b>We run all kinds of services in form of Technologies</b></h1>
+            <h1 className='text-center m-auto' style={{width: "30%", color: "black", letterSpacing: "2px"}}><b>Hastalıklar</b></h1>
             <br></br><br></br><br></br>
             <Container>
-              
+            <i class="fa-regular fa-head-side-medical" style={{color: "#494ca2"}}></i>
                 <MDBRow className='row-cols-1 row-cols-md-4 g-4'>
                   <MDBCol>
                     <MDBCard className='text-body mb-3 p-4 serviceCard' style={{height: "280px"}}>
                       <MDBCardBody>
-                      <span className="square rounded-8 p-3 mb-5" style={{backgroundColor: "#d2f9f5"}}><i class="fas fa-envelope" style={{color: "#27e3d1"}}></i></span>
-                        <MDBCardTitle className='mt-5'>Product Management</MDBCardTitle><br></br><br></br>
+                      <span className="square rounded-8 p-3 mb-5" style={{backgroundColor: "#d2f9f5"}}><i class="fa-solid fa-brain" style={{color: "#27e3d1"}}></i></span>
+                        <MDBCardTitle className='mt-5'>Nöroloji</MDBCardTitle><br></br><br></br>
                         <MDBCardText className='text-secondary'>
-                          50 available vacancy
+                        ...
                         </MDBCardText>
                       </MDBCardBody>
                     </MDBCard>
@@ -106,10 +112,11 @@ function HomePage() {
                   <MDBCol>
                   <MDBCard background='white' className='text-body mb-3 p-4 serviceCard' style={{height: "280px"}}>
                       <MDBCardBody>
-                      <span className="square rounded-8 p-3 mb-5" style={{backgroundColor: "#dbdbec"}}><i class="fas fa-layer-group" style={{color: "#494ca2"}}></i></span>
-                        <MDBCardTitle className='mt-5'>Web & Mobile Development</MDBCardTitle><br></br><br></br>
+                      
+                      <span className="square rounded-8 p-3 mb-5" style={{backgroundColor: "#dbdbec"}}><i class="fa-solid fa-head-side-mask"></i></span>
+                        <MDBCardTitle className='mt-5'>Psikoloji</MDBCardTitle><br></br><br></br>
                         <MDBCardText className='text-secondary'>
-                          50 available vacancy
+                        ...
                         </MDBCardText>
                       </MDBCardBody>
                     </MDBCard>
@@ -118,9 +125,9 @@ function HomePage() {
                   <MDBCard background='white' className='text-body mb-3 p-4 serviceCard' style={{height: "280px"}}>
                       <MDBCardBody>
                       <span className="square rounded-8 p-3 mb-5" style={{backgroundColor: "#cfe7ff"}}><i class="fas fa-headphones" style={{color: "#198eff"}}></i></span>
-                        <MDBCardTitle className='mt-5'>Customer Support</MDBCardTitle><br></br><br></br>
+                        <MDBCardTitle className='mt-5'>Kardiyoloji</MDBCardTitle><br></br><br></br>
                         <MDBCardText className='text-secondary'>
-                          50 available vacancy
+                        ...
                         </MDBCardText>
                       </MDBCardBody>
                     </MDBCard>
@@ -129,9 +136,9 @@ function HomePage() {
                   <MDBCard background='white' className='text-body mb-3 p-4 serviceCard' style={{height: "280px"}}>
                       <MDBCardBody>
                       <span className="square rounded-8 p-3 mb-5" style={{backgroundColor: "#ffddd3"}}><i class="fas fa-bell" style={{color: "#ff5722"}}></i></span>
-                        <MDBCardTitle className='mt-5'>Human Resources</MDBCardTitle><br></br><br></br>
+                        <MDBCardTitle className='mt-5'>Dahiliye</MDBCardTitle><br></br><br></br>
                         <MDBCardText className='text-secondary'>
-                          50 available vacancy
+                          ...
                         </MDBCardText>
                       </MDBCardBody>
                     </MDBCard>
@@ -139,7 +146,7 @@ function HomePage() {
                 </MDBRow>
               
               <br></br>
-              <MDBRow className='row-cols-1 row-cols-md-4 g-4'>
+              {/* <MDBRow className='row-cols-1 row-cols-md-4 g-4'>
                   <MDBCol>
                   <MDBCard background='white' className='text-body mb-3 p-4 serviceCard' style={{height: "280px"}}>
                       <MDBCardBody>
@@ -183,40 +190,40 @@ function HomePage() {
                       </MDBCardBody>
                     </MDBCard>
                   </MDBCol>
-                </MDBRow>
+                </MDBRow> */}
             </Container>
           </div>
           <div style={{minHeight: "1100px"}}>
             <Container>
               <br></br><br></br><br></br><br></br>
-              <h6 style={{color: "#0da5b3"}}><b>High Quality</b></h6>
+              <h6 style={{color: "#0da5b3"}}><b>Hakkımızda</b></h6>
               <br></br>
               <h1 className='w-50'>
-                We will make your website look more elegant and stylish!
+                TeleSağlık Nedir!
               </h1>
               <br></br>
               <div className='d-flex'>
-                <p style={{width: "50%", marginRight: "80px"}}>Business advisory service advises current and future businesses prospects of a client, 
-                  with the aim of advancing their business or company. This service is used by all types of 
-                  businesses and would involve examining the legal, tax, finance, market and risks factors 
-                  involved to start up a business.
+                <p style={{width: "50%", marginRight: "80px"}}>Telesağlık platformu, hastaların doktorlarla görüntülü olarak iletişim kurabildiği, online randevu oluşturabildiği ve muayene olabildiği bir dijital sağlık hizmetidir. Bu platform, kullanıcıların doktorlarıyla etkileşime geçmelerini sağlayan bir sanal ortam sağlar. Hastalar, cihazlarından (bilgisayar, akıllı telefon veya tablet) telesağlık uygulamasına erişerek randevu alabilir ve ilgili doktorla bir görüntülü görüşme yapabilir.
+
+Telesağlık platformu, kullanıcılara çeşitli sağlık hizmetlerine erişim imkanı sunar. Hastalar, genel sağlık kontrolü, akut hastalık durumları, kronik rahatsızlıkların takibi, ilaç danışmanlığı, laboratuvar sonuçlarının değerlendirilmesi gibi konularda doktorlarıyla görüşebilir ve gerektiğinde uzaktan muayene olabilir. Ayrıca, doktorlar hastalık tanısı koymak, tedavi planı oluşturmak veya hastaların mevcut tedavilerini yönetmek için telesağlık platformunu kullanabilirler.
                 </p>
                 <p style={{width: "50%"}}>
-                  Business advisory service advises current and future businesses prospects of a client, 
-                  with the aim of advancing their business or company. This service is used by all types 
-                  of businesses and would involve examining the legal, tax, finance, market and risks factors 
-                  involved to start up a business.
+                Bu platform, sağlık hizmetlerine kolay erişim sağlarken aynı zamanda zamandan ve yerden bağımsızlık sunar. Hastalar, mevcut konumlarından bağımsız olarak, istedikleri zaman ve yerde doktorlarıyla görüşebilirler. Özellikle kırsal bölgelerde yaşayan veya ulaşım sorunu yaşayan kişiler için büyük bir avantaj sağlar.
+
+Telesağlık platformları, hasta gizliliği ve güvenliği konularında da titizlikle çalışır. Tüm görüşmeler ve hasta verileri, gizlilik standartlarına uygun olarak korunur ve sadece yetkilendirilmiş sağlık profesyonelleri tarafından erişilebilir.
+
+Sonuç olarak, telesağlık platformları, hastaların doktorlarıyla görüntülü olarak iletişim kurabildiği, online randevu oluşturabildiği ve muayene olabildiği bir dijital sağlık hizmetidir. Bu platformlar, sağlık hizmetlerine erişimi kolaylaştırırken zamandan ve yerden bağımsızlık sunar, böylece hastaların sağlık ihtiyaçlarını etkili bir şekilde karşılamalarına yardımcı olur.
                 </p>
               </div><br></br><br></br><br></br>
               <div className='d-flex'>
                 <img src={"https://finestwp.co/demos/html/fastland/image/home-3/feature-l3-image.png"} alt="Logo" style={{marginRight: "100px"}}/>
                 <ul>
                   <br></br><br></br><br></br>
-                  <li className='listItem'><b>Multi-page sites and one-page sites</b></li>
+                  <li className='listItem'><b>Alanında Uzman Doktorlar</b></li>
                   <br></br>
-                  <li className='listItem'><b>Built with Bootstrap 5</b></li>
+                  <li className='listItem'><b>Online Sağlık Hizmeti</b></li>
                   <br></br>
-                  <li className='listItem'><b>Free updates and support</b></li>
+                  <li className='listItem'><b>Çevrimiçi Görüşme İmkanı</b></li>
                 </ul>
                 <div style={{position: "absolute",
                              top: "2800px", 
@@ -252,68 +259,68 @@ function HomePage() {
           <div style={{minHeight: "1000px", backgroundColor: "#f3f4f6"}}>
             <Container> 
               <br></br><br></br><br></br><br></br><br></br>
-              <h6 style={{color: "#0da5b3"}}><b>High Quality</b></h6>
+              <h6 style={{color: "#0da5b3"}}><b>Yüksek Kalite</b></h6>
               <br></br><br></br><br></br>               
               <div className='d-flex'>
                 <div style={{width: "50%"}}>
-                  <h1>Meet the professionals</h1>
+                  <h1>Online Sağlık </h1>
                   <br></br>
                   <p style={{width: "70%"}}>
-                    Top of the list of dreams for many small firms and solo
-                    professionals is to win lucrative work with big corporate
-                    clients. A few decent projects can keep.
+                    Alanında uzman birbirinden değerli uzman doktorlar ile online randevular alarak görüntülü konuşun. Ve onlardan online sağlık hizmeti alın.
                   </p>
                   <br></br>
                   <div className='w-75'>
-                    <div className='d-flex justify-content-between mb-2'><h5>Prosperity</h5><h5>65%</h5></div>
+                    <div className='d-flex justify-content-between mb-2'><h5> Günlük Çevrimiçi Görüşme</h5><h5>850</h5></div>
                     <ProgressBar variant="success" now={65} style={{height: "7px", borderRadius: "10px"}}/>
                     <br></br><br></br>
-                    <div className='d-flex justify-content-between mb-2'><h5>Quality</h5><h5>80%</h5></div>
+                    <div className='d-flex justify-content-between mb-2'><h5>Günlük Alınan Randevu   </h5><h5>1200</h5></div>
                     <ProgressBar variant="info" now={80} style={{height: "7px", borderRadius: "10px"}}/>
                     <br></br><br></br>
-                    <div className='d-flex justify-content-between mb-2'><h5>Guaranty</h5><h5>40%</h5></div>
-                    <ProgressBar variant="warning" now={40} style={{height: "7px", borderRadius: "10px"}}/>
+                    <div className='d-flex justify-content-between mb-2'><h5>Kayıtlı Kullanıcı Sayısı</h5><h5>6859</h5></div>
+                    <ProgressBar variant="warning" now={95} style={{height: "7px", borderRadius: "10px"}}/>
                     <br></br><br></br>
-                    <div className='d-flex justify-content-between mb-2'><h5>Services</h5><h5>60%</h5></div>
-                    <ProgressBar variant="danger" now={60} style={{height: "7px", borderRadius: "10px"}}/>
+                    <div className='d-flex justify-content-between mb-2'><h5>Doktor Sayımız</h5><h5>486</h5></div>
+                    <ProgressBar variant="danger" now={35} style={{height: "7px", borderRadius: "10px"}}/>
                   </div>
                 </div>
                 <img src={"https://finestwp.co/demos/html/fastland/image/home-3/content-l3-img-1.png"} alt="Logo" style={{width: "60%"}} />
               </div>
             </Container>
           </div>
-          <div style={{minHeight: "1000px"}}>
+          <div style={{minHeight: "500px"}}>
             <Container>
               <br></br>
-              <h5 className='text-center pt-5' style={{color: "#0da5b3"}}><b>Hizmetlerimiz</b></h5>
-              <h1 className='text-center pt-3'>Digital system for your company</h1>
+              <h5 className='text-center pt-5' style={{color: "#0da5b3"}}><b>Mobil Uygulamalarımız</b></h5>
+              <h1 className='text-center pt-3'>Artık Cebinizdeyiz</h1>
               <br></br><br></br><br></br>
               
-              <div className='d-flex justify-content-between' style={{marginLeft: "150px", marginRight:"150px"}}>
+              <div className='d-flex justify-content-between' style={{marginLeft: "400px", marginRight:"400px"}}>
                 <div className='steps'>
-                  <h3 className='border rounded-circle text-white' style={{backgroundColor: "#5034fc", 
+                  {/* <h3 className='border rounded-circle text-white' style={{backgroundColor: "#5034fc", 
                                                                      padding:"30px 40px",
                                                                      boxShadow: "0px 0px 30px 30px rgba(80,52,252,0.1)",
                                                                      width:"100px"}}>1
-                  </h3>
-                  <h3 className=''>Randevu</h3>
+                  </h3> */}
+                  <FontAwesomeIcon
+        icon={faAppStoreIos}
+        style={{ fontSize: '10em', color: "#2e72e0" }}
+      /><br></br><br></br><h3 className=''>App Store</h3>
                   <p></p>
                 </div>
                 <div className='steps'>
-                  <h3 className='border rounded-circle text-white' style={{backgroundColor: "#ef4339",
-                                                                     padding:"30px 40px",
-                                                                     boxShadow: "0px 0px 30px 30px rgba(239,67,57,0.1)",
-                                                                     width: "100px"}}>2
-                  </h3>
-                  <h3 className=''>Görüşme</h3>
+                <FontAwesomeIcon
+        icon={faGooglePlay}
+        style={{ fontSize: '10em', color: "#ff3396" }}
+
+      /><br></br><br></br><h3 className=''>Google Play</h3>
                   </div>
-                <div>
+                {/* <div>
                   <h3 className='border rounded-circle text-white' style={{backgroundColor: "#0da5b3", 
                                                                      padding:"30px 40px",
                                                                      boxShadow: "0px 0px 30px 30px rgba(13,165,179,0.1)"}}>3
                   </h3>
                   <h3 className=''>Yorumla</h3>
-                </div>
+                </div> */}
               </div>
               <br></br><br></br>
               
@@ -321,34 +328,32 @@ function HomePage() {
           </div>
           <div className='d-flex align-items-center' style={{minHeight: "620px", backgroundImage: "url('https://arsiv.bakircay.edu.tr/sliderimage/1081218831.jpg')", backgroundSize: "100%"}}>
             <Container className='text-center text-white'>
-              <h1>Let’s talk about work</h1><br></br>
-              <h3 className='w-50 m-auto'>Part of what Adobe does is advise our
-                customers about transform,
+              {/* <h1>TeleSağlık</h1><br></br>
+              <h3 className='w-50 m-auto'>.
               </h3><br></br>
               <MDBBtn rounded className='text-center pe-5 ps-5 pt-3 pb-3' size='lg' style={{backgroundColor: "#0da5b3"}}>
                 Hemen Başla
-              </MDBBtn>
+              </MDBBtn> */}
             </Container>
           </div>
           <div style={{minHeight: "900px" , backgroundColor: "#f3f4f6"}}>
             <Container>
               <div>
                 <br></br><br></br><br></br><br></br>
-                <h6 style={{color: "#0da5b3"}} className="text-center"><b>High Quality</b></h6>
+                <h6 style={{color: "#0da5b3"}} className="text-center"><b>Yorumlar</b></h6>
                 <br></br>
-                <h1 className='text-center w-50 m-auto'>We Care About Our Customers Experience Too</h1><br></br><br></br><br></br>
+                <h1 className='text-center w-50 m-auto'>Kullanıcılarımızın Değerli Yorumları</h1><br></br><br></br><br></br>
                 <MDBRow className='row-cols-1 row-cols-md-3 g-3'>
                   <MDBCol>
                     <MDBCard className='text-body mb-3 p-4 commentCard m-1' style={{height: "320px"}}>
                       <MDBCardBody>
                       <i class="fas fa-circle-user commentatorPic" style={{color: "#0da5b3", fontSize:"50px"}}></i>
                         <MDBCardText className='mt-4'>
-                          There are many variations passages of Lorem lpsum available, 
-                          but the majority have suffered alteration in some form, by injected or randomised.
+                          Harika!
                         </MDBCardText><hr></hr>
                         <div className='d-flex justify-content-between'>
                           <MDBCardText>
-                            <b>John Doe</b>
+                            <b>Mahmut Tiryaki</b>
                           </MDBCardText>
                           <MDBCardText className='text-secondary'>
                             <div className='d-flex'>
@@ -368,12 +373,11 @@ function HomePage() {
                       <MDBCardBody>
                       <i class="fas fa-circle-user commentatorPic" style={{color: "#0da5b3", fontSize:"50px"}}></i>
                         <MDBCardText className='mt-4'>
-                          There are many variations passages of Lorem lpsum available, 
-                          but the majority have suffered alteration in some form, by injected or randomised.
+                          Gençleştim resmen , bu kadar mı fark eder.
                         </MDBCardText><hr></hr>
                         <div className='d-flex justify-content-between'>
                           <MDBCardText>
-                            <b>John Doe</b>
+                            <b>Kezman Tütün</b>
                           </MDBCardText>
                           <MDBCardText className='text-secondary'>
                             <div className='d-flex'>
@@ -393,12 +397,11 @@ function HomePage() {
                       <MDBCardBody>
                       <i class="fas fa-circle-user commentatorPic" style={{color: "#0da5b3", fontSize:"50px"}}></i>
                         <MDBCardText className='mt-4'>
-                          There are many variations passages of Lorem lpsum available, 
-                          but the majority have suffered alteration in some form, by injected or randomised.
+                          Teknoloji ne kadar gelişti, insan gerçekten hayret ediyor...
                         </MDBCardText><hr></hr>
                         <div className='d-flex justify-content-between'>
                           <MDBCardText>
-                            <b>John Doe</b>
+                            <b>Rıfıka Su</b>
                           </MDBCardText>
                           <MDBCardText className='text-secondary'>
                             <div className='d-flex'>
@@ -420,26 +423,24 @@ function HomePage() {
           <div style={{minHeight: "900px"}}>
             <Container>
               <br></br><br></br><br></br><br></br><br></br>
-              <h6 style={{color: "#0da5b3"}}><b>Contact Us</b></h6>
+              <h6 style={{color: "#0da5b3"}}><b>Bizimle İletişime Geç</b></h6>
               <br></br><br></br>               
               <div className='d-flex'>
                 <div style={{width: "50%"}}>
-                  <h1>Send A Message</h1>
+                  <h1>Mesaj Gönder</h1>
                   <br></br>
                   <p style={{width: "70%"}}>
-                    Top of the list of dreams for many small firms and solo
-                    professionals is to win lucrative work with big corporate
-                    clients. A few decent projects can keep.
+                    Mesajınızı Aşağıya Yazın.
                   </p>
                   <br></br>
                   <div className='w-75'>
                     <div className='d-flex justify-content-between'>
-                      <MDBInput id='form4Example1' wrapperClass='mb-4' label='Name' />
-                      <MDBInput type='email' id='form4Example2' wrapperClass='mb-4' label='Email address' />
+                      <MDBInput id='form4Example1' wrapperClass='mb-4' label='İsim Soyisim' />
+                      <MDBInput type='email' id='form4Example2' wrapperClass='mb-4' label='Email ' />
                     </div>
-                    <MDBInput wrapperClass='mb-4' textarea id='form4Example3' rows={4} label='Message' style={{height: "150px"}}/>
+                    <MDBInput wrapperClass='mb-4' textarea id='form4Example3' rows={4} label='Mesaj' style={{height: "150px"}}/>
                     <div className='d-flex justify-content-between'>
-                      <MDBRadio name='flexRadioDefault' id='flexRadioDefault1' label='Subscribe to newsletter.' />
+                      <MDBRadio name='flexRadioDefault' id='flexRadioDefault1' label='Bültene Abone Ol.' />
                       <MDBBtn rounded className='text-center pe-5 ps-5 pt-3 pb-3' size='lg' style={{backgroundColor: "#0da5b3"}}>
                         Gönder
                       </MDBBtn>
@@ -448,19 +449,16 @@ function HomePage() {
                 </div>
                 {/* <img src={"https://finestwp.co/demos/html/fastland/image/home-3/content-l3-img-1.png"} alt="Logo" style={{width: "60%"}} /> */}
                 <div className='text-white pt-5 pb-5 ps-5' style={{width: "550px", backgroundColor: "#0da5b3", borderRadius: "20px"}}>
-                  <h1>Get In Touch</h1><br></br>
+                  <h1>Adresimiz</h1><br></br>
                   <p className='w-75'>
-                    therefore always free from
-                    repetition, injected humour, or
-                    non-characteristic
+                    Gelin,bir çayımızı için...
                   </p>
                   <hr className='me-5'></hr>
                   <div className='d-flex justify-content-between me-5'>
-                    <i class="fas fa-envelope"></i>
+                    
                     <div>
-                      <b>Visit Us:</b>
-                      <p >27 Division St, New York,
-NY 10002, USA</p>
+                      <b>Bizi Ziyaret için:</b>
+                      <p >Gazi Mustafa Kemal Mah, Kaynaklar Cad , Seyrek, Menemen, İzmir</p>
                     </div>
                   </div>
                 </div>

@@ -97,6 +97,10 @@ function LoginPage() {
                
               
                 </Form.Group>
+
+                <a href={`/login`} className='text-center'>Zaten bir hesabın var mı? Giriş Yap.</a>
+                <br></br><br></br>
+                <a href={`/DoctorLogin`} className='text-center'>Doktor Girişi</a>
             </MDBCardBody>
           </MDBCard>
 
