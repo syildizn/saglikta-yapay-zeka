@@ -102,10 +102,26 @@ router.get('/appointments/:id', async (req, res) => {
 // http://localhost:4096/admin/appointments/:id GET request
 router.get('/meetings/:doctorId', async(req,res)=>{
     try {
+        
         let meeting = await Meeting.find({doctorId:req.params.doctorId });
         if (!meeting) {
             console.log(req.params);
             return res.status(404).send('Doctor Not Found');
+        }
+        res.send(meeting);
+    } catch(error) {
+        res.status(500).send(error);
+    }
+})
+
+// http://localhost:4096/admin/appointments/:id GET request
+router.get('/patientmeetings/:patientId', async(req,res)=>{
+    try {
+        console.log(req.params);
+        let meeting = await Meeting.find({patientId:req.params.patientId });
+        if (!meeting) {
+            console.log(req.params);
+            return res.status(404).send('Student Not Found');
         }
         res.send(meeting);
     } catch(error) {

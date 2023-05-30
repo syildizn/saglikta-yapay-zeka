@@ -10,6 +10,7 @@ import DoctorPage from './pages/Doctor.js';
 import LoginPage from './pages/Login.js';
 import DoctorLoginPage from './pages/DoctorLogin.js';
 import DoctorProfilePage from './pages/DoctorProfile.js';
+import StudentProfilePage from './pages/StudentProfile.js';
 
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
 
@@ -39,6 +40,7 @@ function App() {
           <Route path='/DoctorsList/:studentNo' element={<DoctorsPage/>} exact></Route>
           <Route path='/Doctor/:studentNo/:id' element={<DoctorPage/>} exact></Route>
           <Route path='/DoctorProfile/:id' element={<DoctorProfilePage/>} exact></Route>
+          <Route path='/StudentProfile/:id' element={<StudentProfilePage/>} exact></Route>
         </Routes>
       </main>
     </Router>

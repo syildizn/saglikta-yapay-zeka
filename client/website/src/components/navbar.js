@@ -62,7 +62,7 @@ export default function App() {
                 </MDBDropdownToggle>
                 <MDBDropdownMenu>
                   <MDBDropdownItem link className='text-light' href={`/doctorslist/${studentNo}`}>Doktorlarımız</MDBDropdownItem>
-                  <MDBDropdownItem link className='text-light' >Öğrenci Durumu</MDBDropdownItem>
+                  <MDBDropdownItem link className='text-light' href={`/StudentProfile/${studentNo}`} >Profilim</MDBDropdownItem>
                   <MDBDropdownItem link className='text-light' >Hekim Durumu</MDBDropdownItem>
                   <MDBDropdownItem link className='text-light' >Görüşme İstatistikleri</MDBDropdownItem>
                 </MDBDropdownMenu>
@@ -120,12 +120,12 @@ export default function App() {
           <FaFacebook size={20} className="text-primary me-4"/>
           <FaLinkedin size={20} className="text-primary me-4"/>
           <FaTwitter size={20} className="text-primary me-2"/>
-          <p className='mt-3' style={{fontSize: "30px"}}>|</p>
+          {/* <p className='mt-3' style={{fontSize: "30px"}}>|</p>
     
         
           <MDBBtn rounded className='ms-4 me-5 text-center ps-3' style={{backgroundColor: "#0da5b3"}}>
             GİRİŞ
-          </MDBBtn>
+          </MDBBtn> */}
           
         </MDBCollapse>
       
