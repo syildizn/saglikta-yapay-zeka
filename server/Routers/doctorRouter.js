@@ -115,7 +115,7 @@ router.post('/setMeeting', function (req, res) {
     var mailOptions = {
     from: 'syzbakircay.projects@gmail.com',
     // to: `${req.body.patientEmail}`,
-    to: "turanemre1999@gmail.com",
+    to: "syzbakircay.projects@gmail.com",
     subject: 'Randevu Onay',
     text: `Merhaba, 
 
